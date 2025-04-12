@@ -1,0 +1,115 @@
+﻿<Window x:Class="Geometry_Modeling_6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Geometry_Modeling_6"
+        mc:Ignorable="d"
+    Title="Geometry Modeling 6" Height="700" Width="1000">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="20"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*" />
+            <ColumnDefinition Width="1.6*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left section for plotting area -->
+        <Canvas Name="PlotArea" Grid.Column="0" Margin="10" >
+            <Canvas.LayoutTransform>
+                <ScaleTransform ScaleX="1" ScaleY="-1"></ScaleTransform>
+            </Canvas.LayoutTransform>
+            <!-- Add your drawing logic in the code-behind or use a custom control -->
+        </Canvas>
+
+        <!-- Right section for controls -->
+        <StackPanel Grid.Column="1" Margin="10"
+                    Width="340">
+            <GroupBox Header="Texture transformation" Foreground="#B388FF" FontWeight="Bold"
+          Padding="10" Margin="0,0,0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="dU :" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="du" Width="70" Margin="5,0" Text="10" KeyDown="TextBoxFigureChangeKeyDown" />
+                        <TextBlock Text="dV :" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="dv" Width="70" Margin="5,0"  Text="10" KeyDown="TextBoxFigureChangeKeyDown" />
+                        <TextBlock Text="Θ :" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="angle" Width="70" Margin="5,0"  Text="" KeyDown="TextBoxRotateContour" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <!-- Figure Position -->
+            <GroupBox Header="Figure Position" Foreground="#B388FF" FontWeight="Bold"
+                     Padding="10" Margin="0,0,0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="X:" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="FigurePosX" Width="80" Margin="5,0" KeyDown="TextBoxMoveKeyDown" />
+                        <TextBlock Text="Y:" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="FigurePosY" Width="80" Margin="5,0" KeyDown="TextBoxMoveKeyDown" />
+                        <TextBlock Text="Z:" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="FigurePosZ" Width="80" Margin="5,0" KeyDown="TextBoxMoveKeyDown" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Rotate Point Position -->
+            <GroupBox Header="Rotate Point Position" Foreground="#B388FF" FontWeight="Bold"
+                     Padding="10" Margin="0,0,0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="X:" Foreground="#5E35B1" VerticalAlignment="Center"  />
+                        <TextBox Name="RotatePosX" Width="80" Margin="5,0"  KeyDown="TextBoxRotateKeyDown"/>
+                        <TextBlock Text="Y:" Foreground="#5E35B1" VerticalAlignment="Center" />
+                        <TextBox Name="RotatePosY" Width="80" Margin="5,0" KeyDown="TextBoxRotateKeyDown"/>
+                        <TextBlock Text="Z:" Foreground="#5E35B1" VerticalAlignment="Center" />
+                        <TextBox Name="RotatePosZ" Width="80" Margin="5,0" KeyDown="TextBoxRotateKeyDown" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+
+            <GroupBox Header="Parameters : height and radius" Foreground="#B388FF" FontWeight="Bold"
+                      Padding="10" Margin="0,0,0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Height :" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="H" Width="100" Margin="5,0" Text="180" KeyDown="TextBoxFigureChangeKeyDown" />
+                        <TextBlock Text="Radius :" Foreground="#5E35B1" VerticalAlignment="Center"/>
+                        <TextBox Name="S" Width="100" Margin="5,0"  Text="60" KeyDown="TextBoxFigureChangeKeyDown" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+
+            <GroupBox Header="Axis rotation" Foreground="#B388FF" FontWeight="Bold"
+                       Padding="10" Margin="0,0,0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="Oz:" Foreground="#5E35B1" HorizontalAlignment="Center"/>
+                        <TextBox Name="ozAlpha" Width="120" Margin="5,0" Text="45" KeyDown="TextBoxAxisAngleKeyDown"
+                                 HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <Button Content="Animation" Width="150" Margin="0,10" 
+                       Background="#F8BBD0" Foreground="#D81B60" BorderBrush="Transparent"
+        FontWeight="Bold" Style="{StaticResource RoundedButtonStyle}" Click="StartAnimation_Click"/>
+
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>
